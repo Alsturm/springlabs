@@ -1,22 +1,14 @@
 package aop;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.springframework.test.util.AssertionErrors.assertTrue;
-
 import lab.aop.AopLog;
 import lab.model.Bar;
 import lab.model.Customer;
-import lab.model.CustomerBrokenException;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context.xml")
 
 public class AopAspectJExceptionTest {
@@ -27,18 +19,17 @@ public class AopAspectJExceptionTest {
 	@Autowired
     private Customer customer;
 
-    @BeforeAll
-    public void setUp() throws Exception {
-        
+//    @BeforeAll
+//    public void setUp() {
 //        customer.setBroke(true);
-    }
+//    }
 
     @Test
     public void testAfterThrowingAdvice() {
- 
+        customer.setBroke(true);
     	bar.sellSquishee(customer);
     	
-        assertTrue("Customer is not broken ", AopLog.getStringValue().contains("Hmmm..."));
+        assertTrue(AopLog.getStringValue().contains("Hmmm..."), "Customer is not broken ");
         System.out.println(AopLog.getStringValue());
     }
 }

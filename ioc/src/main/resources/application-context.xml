@@ -5,13 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="person" class="lab.model.UsualPerson">
+    <bean id="person" class="lab.model.simple.SimplePerson">
         <property name="name" value="John Smith"/>
         <property name="age" value="35"/>
         <property name="country" ref="country"/>
     </bean>
 
-    <bean id="country" class="lab.model.Country">
+    <bean id="country" class="lab.model.simple.SimpleCountry">
         <property name="id" value="1"/>
         <property name="name" value="Russia"/>
         <property name="codeName" value="RU"/>
