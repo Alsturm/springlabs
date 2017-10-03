@@ -5,6 +5,8 @@ import lab.model.Bar;
 import lab.model.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,11 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AopAspectJExceptionTest {
 
-	@Autowired
-	private Bar bar;
+    ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+//    @Autowired
+	private Bar bar = (Bar) ctx.getBean("bar");
     
-	@Autowired
-    private Customer customer;
+//	@Autowired
+//    private Customer customer;
+    private Customer customer = (Customer) ctx.getBean("customer");
 
 //    @BeforeAll
 //    public void setUp() {
