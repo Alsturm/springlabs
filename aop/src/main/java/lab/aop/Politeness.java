@@ -25,6 +25,7 @@ public class Politeness {
         AopLog.append("Hmmm... \n");
     }
 
+    @After("execution(* sellSquishee(..))")
     public void sayGoodBye() {
         AopLog.append("Good Bye! \n");
     }

@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="person" class="lab.model.UsualPerson">
-        <property name="name" value="John Smith"/>
-        <property name="age" value="35"/>
-        <property name="country" ref="country"/>
-    </bean>
+    <bean id="person" class="lab.model.simple.SimplePerson"
+          c:id="1"
+          c:name="John Smith"
+          c:height="1.78"
+          c:isProgrammer="true"
+          c:age="35"
+          c:country-ref="country"
+          c:contacts-ref="contacts"/>
 
-    <bean id="country" class="lab.model.Country">
-        <property name="id" value="1"/>
-        <property name="name" value="Russia"/>
-        <property name="codeName" value="RU"/>
-    </bean>
+    <bean id="country" class="lab.model.simple.SimpleCountry"
+          c:id="1"
+          c:name="Russia"
+          c:codeName="RU"/>
+
+    <util:list id="contacts" value-type="java.lang.String">
+        <value>adf@epam.com</value>
+        <value>+7-905-222-3322</value>
+    </util:list>
+
 </beans>
