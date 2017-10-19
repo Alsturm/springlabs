@@ -12,6 +12,7 @@
     <modules>
         <module>ioc</module>
         <module>aop</module>
+        <module>jdbc</module>
     </modules>
 
     <properties>

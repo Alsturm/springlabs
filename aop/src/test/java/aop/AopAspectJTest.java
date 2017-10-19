@@ -4,15 +4,18 @@ import lab.aop.AopLog;
 import lab.model.ApuBar;
 import lab.model.Bar;
 import lab.model.Customer;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-@ContextConfiguration("classpath:application-context.xml")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration("classpath:aop.xml")
 public class AopAspectJTest {
 
 	@Autowired
@@ -21,9 +24,8 @@ public class AopAspectJTest {
 	@Autowired
     private Customer customer;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() throws Exception {
-
         bar.sellSquishee(customer);
     }
 

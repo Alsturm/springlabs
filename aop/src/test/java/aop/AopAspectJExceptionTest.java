@@ -4,18 +4,17 @@ import lab.aop.AopLog;
 import lab.model.Bar;
 import lab.model.Customer;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ContextConfiguration("classpath:application-context.xml")
+@ContextConfiguration("classpath:aop.xml")
 
 public class AopAspectJExceptionTest {
 
-    ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
+    ApplicationContext ctx = new ClassPathXmlApplicationContext("aop.xml");
 //    @Autowired
 	private Bar bar = (Bar) ctx.getBean("bar");
     
