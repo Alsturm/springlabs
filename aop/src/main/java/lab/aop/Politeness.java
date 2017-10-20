@@ -21,6 +21,7 @@ public class Politeness {
         AopLog.append("Is " + ((Squishee) retVal).getName() + " Good Enough? \n");
     }
 
+    @AfterThrowing("execution(* sellSquishee(..))")
     public void sayYouAreNotAllowed() {
         AopLog.append("Hmmm... \n");
     }
@@ -30,9 +31,12 @@ public class Politeness {
         AopLog.append("Good Bye! \n");
     }
 
+    @Around("execution(* sellSquishee(..))")
     public Object sayPoliteWordsAndSell(ProceedingJoinPoint pjp) throws Throwable {
         AopLog.append("Hi! \n");
         Object retVal = pjp.proceed();
+        //        Without calling proceed():
+        //        Object retVal = new Squishee("From around advice squishee");
         AopLog.append("See you! \n");
         return retVal;
     }

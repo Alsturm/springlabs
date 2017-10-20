@@ -16,47 +16,47 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:aop.xml")
-public class AopAspectJTest {
+class AopAspectJTest {
 
-	@Autowired
+    @Autowired
     private Bar bar;
 
-	@Autowired
+    @Autowired
     private Customer customer;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         bar.sellSquishee(customer);
     }
 
     @Test
-    public void testBeforeAdvice() {
+    void testBeforeAdvice() {
         assertTrue("Before advice is not good enought...", AopLog.getStringValue().contains("Hello"));
         assertTrue("Before advice is not good enought...", AopLog.getStringValue().contains("How are you doing?"));
         System.out.println(AopLog.getStringValue());
     }
 
     @Test
-    public void testAfterAdvice() {
+    void testAfterAdvice() {
         System.out.println(AopLog.getStringValue());
         assertTrue("After advice is not good enought...", AopLog.getStringValue().contains("Good Bye!"));
     }
 
     @Test
-    public void testAfterReturningAdvice() {
+    void testAfterReturningAdvice() {
         assertTrue("Customer is broken", AopLog.getStringValue().contains("Good Enough?"));
         System.out.println(AopLog.getStringValue());
     }
 
     @Test
-    public void testAroundAdvice() {
+    void testAroundAdvice() {
         assertTrue("Around advice is not good enought...", AopLog.getStringValue().contains("Hi!"));
         assertTrue("Around advice is not good enought...", AopLog.getStringValue().contains("See you!"));
         System.out.println(AopLog.getStringValue());
     }
 
     @Test
-    public void testAllAdvices() {
+    void testAllAdvices() {
         //"barObject instanceof ApuBar",
         assertFalse(bar instanceof ApuBar);
     }
