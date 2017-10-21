@@ -1,6 +1,7 @@
 package lab.dao;
 
 import lab.model.Country;
+import lab.model.simple.SimpleCountry;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -12,12 +13,10 @@ public class CountryRowMapper implements RowMapper<Country> {
 	public static final String CODE_NAME = "code_name";
 
 	public Country mapRow(ResultSet resultSet, int i) throws SQLException {
-		Country country = new Country();
-		country.setId(resultSet.getInt(ID));
-		country.setName(resultSet.getString(NAME));
+		int id = resultSet.getInt(ID);
+		String name = resultSet.getString(NAME);
+		String codeName = resultSet.getString(CODE_NAME);
 
-		// TODO: implement it
-		
-		return country;
+		return new SimpleCountry(id, name, codeName);
 	}
 }
