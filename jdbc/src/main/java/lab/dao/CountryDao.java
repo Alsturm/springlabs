@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import javax.sql.DataSource;
 import java.util.List;
 
-public class CountryDao extends JdbcDaoSupport {
+public final class CountryDao extends JdbcDaoSupport {
 	private static final String GET_ALL_COUNTRIES_SQL = "select * from country";
 	private static final String GET_COUNTRIES_BY_NAME_SQL = "select * from country where name like :name";
 	private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '?'";
@@ -21,43 +21,42 @@ public class CountryDao extends JdbcDaoSupport {
 	private DataSource dataSource = getDataSource();
 
     public List<Country> getCountryList() {
-        NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        final NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         return jdbcTemplate.query(GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
     }
 
-    public List<Country> getCountryListStartWith(String name) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
+    public List<Country> getCountryListStartWith(final String name) {
+        final NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
                 dataSource);
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource(
+        final SqlParameterSource sqlParameterSource = new MapSqlParameterSource(
                 "name", name + "%");
         return namedParameterJdbcTemplate.query(GET_COUNTRIES_BY_NAME_SQL,
                 sqlParameterSource, COUNTRY_ROW_MAPPER);
     }
 
-    public void updateCountryName(String codeName, String newCountryName) {
-        NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-        SqlParameterSource sqlParameterSource =
+    public void updateCountryName(final String codeName, final String newCountryName) {
+        final NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        final SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource("name", newCountryName)
                         .addValue("codeName", codeName);
         jdbcTemplate.update(UPDATE_COUNTRY_NAME_SQL, sqlParameterSource);
     }
 
-    public Country getCountryByCodeName(String codeName) {
-        JdbcTemplate jdbcTemplate = getJdbcTemplate();
+    public Country getCountryByCodeName(final String codeName) {
+        final JdbcTemplate jdbcTemplate = getJdbcTemplate();
         assert jdbcTemplate != null;
 
-        String sql = GET_COUNTRY_BY_CODE_NAME_SQL + codeName + "'";
+        final String sql = GET_COUNTRY_BY_CODE_NAME_SQL + codeName + "'";
 //		System.out.println(sql);
 
         return jdbcTemplate.query(sql, COUNTRY_ROW_MAPPER).get(0);
     }
 
-    public Country getCountryByName(String name)
+    public Country getCountryByName(final String name)
             throws CountryNotFoundException {
-        JdbcTemplate jdbcTemplate = getJdbcTemplate();
+        final JdbcTemplate jdbcTemplate = getJdbcTemplate();
         assert jdbcTemplate != null;
-        List<Country> countryList = jdbcTemplate.query(GET_COUNTRY_BY_NAME_SQL
-                , COUNTRY_ROW_MAPPER, name);
+        final List<Country> countryList = jdbcTemplate.query(GET_COUNTRY_BY_NAME_SQL, COUNTRY_ROW_MAPPER, name);
         if (countryList.isEmpty()) {
             throw new CountryNotFoundException();
         }
