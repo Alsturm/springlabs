@@ -1,6 +1,5 @@
 package lab.dao;
 
+@SuppressWarnings("WeakerAccess")
 public class CountryNotFoundException extends Exception {
-
-	private static final long serialVersionUID = 1L;
 }
