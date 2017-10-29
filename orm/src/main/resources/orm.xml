@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="jdbc.xml"/>
+    <!--<import resource="jdbc.xml"/>-->
+    <context:annotation-config/>
+    <context:component-scan base-package="lab.dao.jpa, lab.model"/>
 
-	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:db-schema.sql"/>	
-		<jdbc:script location="classpath:db-data.sql"/>
-	</jdbc:embedded-database>
 
-    <bean id="countryDao" class="lab.dao.CountryDao">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-    <bean id="rawMapper" class="lab.dao.CountryRowMapper">
-    </bean>
+    <jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath:db-schema.sql"/>
+        <jdbc:script location="classpath:db-data.sql"/>
+    </jdbc:embedded-database>
+
+
+    <bean id="timeWeaver"
+          class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
+
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          p:loadTimeWeaver-ref="timeWeaver"
+          p:dataSource-ref="dataSource"
+          p:persistenceUnitName="springframework.lab.orm.jpa"
+          p:packagesToScan="lab.dao.jpa lab.model"
+          p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider"/>
+
+    <bean id="countryDao" class="lab.dao.jpa.CountryJpaDaoImpl"/>
+
 </beans>
