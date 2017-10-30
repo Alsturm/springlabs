@@ -29,7 +29,7 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
 		List<Country> result = new ArrayList<>();
 		EntityManager em = emf.createEntityManager();
 		if (em != null) {
-			result = em.createQuery("SELECT c from country c", Country.class).getResultList();
+			result = em.createQuery("SELECT c from Country c", Country.class).getResultList();
 			em.close();
 		}
 		return result;
