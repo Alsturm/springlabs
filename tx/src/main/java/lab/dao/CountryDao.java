@@ -12,10 +12,10 @@ import java.util.List;
 public class CountryDao extends JdbcDaoSupport {
 	private static final String LOAD_COUNTRIES_SQL = "insert into country (name, code_name) values ";
 
-	private static final String GET_ALL_COUNTRIES_SQL = "select * from country";
-	private static final String GET_COUNTRIES_BY_NAME_SQL = "select * from country where name like :name";
-	private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '";
-	private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select * from country where code_name = '";
+	private static final String GET_ALL_COUNTRIES_SQL = "select id, name, code_name from country";
+	private static final String GET_COUNTRIES_BY_NAME_SQL = "select id, name, code_name from country where name like :name";
+	private static final String GET_COUNTRY_BY_NAME_SQL = "select id, name, code_name from country where name = '";
+	private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select id, name, code_name from country where code_name = '";
 
 	private static final String UPDATE_COUNTRY_NAME_SQL_1 = "update country SET name='";
 	private static final String UPDATE_COUNTRY_NAME_SQL_2 = " where code_name='";
@@ -30,12 +30,8 @@ public class CountryDao extends JdbcDaoSupport {
 	private static final CountryRowMapper COUNTRY_ROW_MAPPER = new CountryRowMapper();
 
 	public List<Country> getCountryList() {
-		// tester
-		List<Country> countryList = getJdbcTemplate().query(
+		return getJdbcTemplate().query(
 				GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
-
-		return countryList;
-		// return null;
 	}
 
 	public List<Country> getCountryListStartWith(String name) {
@@ -48,7 +44,6 @@ public class CountryDao extends JdbcDaoSupport {
 	}
 
 	public void updateCountryName(String codeName, String newCountryName) {
-		// tester
 		getJdbcTemplate().execute(
 				UPDATE_COUNTRY_NAME_SQL_1 + newCountryName + "'"
 						+ UPDATE_COUNTRY_NAME_SQL_2 + codeName + "'");

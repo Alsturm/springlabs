@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("WeakerAccess")
 public class CountryRowMapper implements RowMapper<Country> {
 	public static final String ID = "id";
 	public static final String NAME = "name";
@@ -16,7 +17,6 @@ public class CountryRowMapper implements RowMapper<Country> {
 		country.setId(resultSet.getInt(ID));
 		country.setName(resultSet.getString(NAME));
 
-		// tester
 		country.setCodeName(resultSet.getString(CODE_NAME));
 		return country;
 	}

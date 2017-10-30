@@ -26,19 +26,25 @@ public class DeclarativeTransactionTest extends JdbcTest {
 
     @Test
     @DirtiesContext
-    public void testRequiredPropagationInsideTransaction() {
+    void testRequiredPropagationInsideTransaction() {
         assertNotNull(countryService.getAllCountriesInsideTransaction(Propagation.REQUIRED));
     }
 
     @Test
     @DirtiesContext
-    public void testRequiredPropagationWithoutTransaction() {
+    void testNotSupportedPropagationInsideTransaction() {
+        assertNotNull(countryService.getAllCountriesInsideTransaction(Propagation.NOT_SUPPORTED));
+    }
+
+    @Test
+    @DirtiesContext
+    void testRequiredPropagationWithoutTransaction() {
         assertNotNull(countryService.getAllCountriesRequired());
     }
 
     @Test
     @DirtiesContext
-    public void testMandatoryPropagationWithoutTransaction() {
+    void testMandatoryPropagationWithoutTransaction() {
         try {
             countryService.getAllCountriesMandatory();
         } catch (Exception e) {
@@ -49,7 +55,7 @@ public class DeclarativeTransactionTest extends JdbcTest {
 
     @Test
     @DirtiesContext
-    public void testMandatoryPropagationInsideTransaction() {
+    void testMandatoryPropagationInsideTransaction() {
         assertNotNull(countryService.getAllCountriesInsideTransaction(Propagation.MANDATORY));
     }
 }

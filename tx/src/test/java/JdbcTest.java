@@ -26,7 +26,7 @@ public class JdbcTest{
     private Country countryWithChangedName = new Country(1, "Russia", "RU");
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         initExpectedCountryLists();
         countryDao.loadCountries();
     }
@@ -34,7 +34,7 @@ public class JdbcTest{
     
     @Test
     @DirtiesContext
-    public void testCountryList() {
+    void testCountryList() {
         List<Country> countryList = countryDao.getCountryList();
         assertNotNull(countryList);
         assertEquals(expectedCountryList.size(), countryList.size());
@@ -45,7 +45,7 @@ public class JdbcTest{
 
     @Test
     @DirtiesContext
-    public void testCountryListStartsWithA() {
+    void testCountryListStartsWithA() {
         List<Country> countryList = countryDao.getCountryListStartWith("A");
         assertNotNull(countryList);
         assertEquals(expectedCountryListStartsWithA.size(), countryList.size());
@@ -56,7 +56,7 @@ public class JdbcTest{
 
     @Test
     @DirtiesContext
-    public void testCountryChange() {
+    void testCountryChange() {
         countryDao.updateCountryName("RU", "Russia");
         assertEquals(countryWithChangedName, countryDao.getCountryByCodeName("RU"));
     }
