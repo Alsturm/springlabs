@@ -114,31 +114,31 @@
                 <configuration>
                     <source>${java.version}</source><!--9-->
                     <target>${java.version}</target>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                        <!--<arg>&#45;&#45;add-modules=java.xml.ws.annotation</arg>-->
-                        <!--<arg>&#45;&#45;permit-illegal-access</arg>-->
+                    <!--<compilerArgs>-->
+                        <!--<arg>-parameters</arg>-->
+                        <!--&lt;!&ndash;<arg>&#45;&#45;add-modules=java.xml.ws.annotation</arg>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<arg>&#45;&#45;permit-illegal-access</arg>&ndash;&gt;-->
 
-                        <!--https://github.com/rzwitserloot/lombok/issues/985-->
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-                        <arg>-J--add-opens</arg>
-                        <arg>-Jjdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-                    </compilerArgs>
+                        <!--&lt;!&ndash;https://github.com/rzwitserloot/lombok/issues/985&ndash;&gt;-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>-->
+                        <!--<arg>-J&#45;&#45;add-opens</arg>-->
+                        <!--<arg>-Jjdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>-->
+                    <!--</compilerArgs>-->
                 </configuration>
             </plugin>
 
