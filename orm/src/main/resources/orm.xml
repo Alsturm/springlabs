@@ -10,7 +10,7 @@
 
     <!--<import resource="jdbc.xml"/>-->
     <context:annotation-config/>
-    <context:component-scan base-package="lab.dao.jpa, lab.model"/>
+    <context:component-scan base-package="lab.*"/>
 
 
     <jdbc:embedded-database id="dataSource" type="H2">

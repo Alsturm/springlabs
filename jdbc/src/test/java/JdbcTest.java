@@ -1,4 +1,5 @@
 import lab.dao.CountryDao;
+import lab.dao.CountryNotFoundException;
 import lab.model.Country;
 import lab.model.simple.SimpleCountry;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,6 +67,12 @@ class JdbcTest{
     void testCountryChange() {
         countryDao.updateCountryName("RU", "Russia");
         assertEquals(countryWithChangedName, countryDao.getCountryByCodeName("RU"));
+    }
+
+    @Test
+    @DirtiesContext
+    void testGetCountryByName() throws CountryNotFoundException {
+        assertEquals(new SimpleCountry(8, "Russian Federation", "RU"), countryDao.getCountryByName("Russian Federation"));
     }
 
     private void initExpectedCountryLists() {
